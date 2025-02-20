@@ -9,8 +9,7 @@ import java.awt.event.ActionListener;
  * This class represents the full view of the MVC pattern of your car simulator.
  * It initializes with being center on the screen and attaching it's controller in it's state.
  * It communicates with the Controller by calling methods of it when an action fires of in
- * each of it's components.
- * TODO: Write more actionListeners and wire the rest of the buttons
+ * each of its components.
  **/
 
 public class CarView extends JFrame{
@@ -105,6 +104,20 @@ public class CarView extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 carC.gas(gasAmount);
+            }
+        });
+
+        brakeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                carC.brake(gasAmount);
+            }
+        });
+
+        startButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                carC.startCars();
             }
         });
 

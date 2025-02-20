@@ -1,0 +1,146 @@
+@startuml
+class CarController {
+- int delay
+- Timer timer
+~ CarView frame
+~ ArrayList<Car> cars
++ {static} void main(String[])
+~ void gas(int)
+}
+
+
+class CarController$TimerListener {
++ void actionPerformed(ActionEvent)
+}
+
+class Scania {
+- int bedAngle
++ int getBedAngle()
++ void raiseBed(int)
++ void lowerBed(int)
++ void startEngine()
++ void gas(double)
+}
+
+
+class Workshop {
+- List<C> stored
+- int capacity
++ List<C> getStored()
++ void storeCar(C)
++ void removeCar(C)
+}
+
+
+interface Movable {
+~ void move()
+~ void turnLeft(int)
+~ void turnRight(int)
+}
+
+class CarView {
+- {static} int X
+- {static} int Y
+~ CarController carC
+~ DrawPanel drawPanel
+~ JPanel controlPanel
+~ JPanel gasPanel
+~ JSpinner gasSpinner
+~ int gasAmount
+~ JLabel gasLabel
+~ JButton gasButton
+~ JButton brakeButton
+~ JButton turboOnButton
+~ JButton turboOffButton
+~ JButton liftBedButton
+~ JButton lowerBedButton
+~ JButton startButton
+~ JButton stopButton
+- void initComponents(String)
+}
+
+
+class Car_Transport {
+- Boolean rampIsUp
+- ArrayList<Car> loadedCars
++ ArrayList<Car> getCarList()
++ void startEngine()
++ void rampUp()
++ void rampDown()
++ void loadCar(Car_Transport,Car)
++ void unloadCar()
++ void move()
++ void turnLeft(int)
++ void turnRight(int)
+}
+
+
+class Saab95 {
++ double turbo
++ void setTurboOn()
++ void setTurboOff()
+# double speedFactor()
+}
+
+
+class DrawPanel {
+~ BufferedImage volvoImage
+~ Point volvoPoint
+~ BufferedImage volvoWorkshopImage
+~ Point volvoWorkshopPoint
+~ void moveit(int,int)
+# void paintComponent(Graphics)
+}
+
+
+class Volvo240 {
+- {static} double trimFactor
+# double speedFactor()
+}
+
+
+class Car {
+- int nrDoors
+- double enginePower
+- double currentSpeed
+- Color color
+- String modelName
+- int turningAngle
+- double x
+- double y
++ String getModelName()
++ int getNrDoors()
++ double getEnginePower()
++ double getCurrentSpeed()
++ Color getColor()
++ void setColor(Color)
++ int getTurningAngle()
++ double getX()
++ double getY()
++ void setPosition(double,double)
++ void startEngine()
++ void stopEngine()
+# double speedFactor()
+- void incrementSpeed(double)
+- void decrementSpeed(double)
++ void gas(double)
++ void brake(double)
++ double deltaDist(Car,Car)
++ void move()
++ void turnLeft(int)
++ void turnRight(int)
+}
+
+
+
+
+CarController +.. CarController$TimerListener
+ActionListener <|.. CarController$TimerListener
+Car <|-- Scania
+JFrame <|-- CarView
+Car <|-- Car_Transport
+Car <|-- Saab95
+JPanel <|-- DrawPanel
+Car <|-- Volvo240
+Movable <|.. Car
+@enduml

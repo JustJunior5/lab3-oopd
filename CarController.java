@@ -30,6 +30,11 @@ public class CarController {
         CarController cc = new CarController();
 
         cc.cars.add(new Volvo240());
+        cc.cars.add(new Saab95());
+        cc.cars.add(new Scania());
+
+        cc.cars.get(1).setPosition(0,100);
+        cc.cars.get(0).setPosition(0,200);
 
         // Start a new view and send a reference of self
         cc.frame = new CarView("CarSim 1.0", cc);
@@ -47,6 +52,9 @@ public class CarController {
                 car.move();
                 int x = (int) Math.round(car.getX());
                 int y = (int) Math.round(car.getY());
+                if(x >= frame.getWidth() + 1 || x <= -1 || y >= frame.getHeight() + 1 || y <= -1){
+                    car.turnRight(180);
+                }
                 frame.drawPanel.moveit(x, y);
                 // repaint() calls the paintComponent method of the panel
                 frame.drawPanel.repaint();
@@ -58,6 +66,18 @@ public class CarController {
     void gas(int amount) {
         for (Car car : cars) {
             car.gas(amount);
+        }
+    }
+
+    void brake(int amount) {
+        for (Car car : cars) {
+            car.brake(amount);
+        }
+    }
+
+    void startCars() {
+        for (Car car : cars) {
+            car.startEngine();
         }
     }
 }
