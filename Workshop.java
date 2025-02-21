@@ -30,10 +30,11 @@ public class Workshop<C extends Car> {
     }
     // Osäker på vad exakt dom menar med den här delen
     public void removeCar(C car){
-    if (stored.contains(car)) {
+        if (stored.contains(car)) {
         stored.remove(car);
         System.out.println(car.getClass().getSimpleName() + " removed from workshop.");
-    } else {
+        }
+        else {
         System.out.println(car.getClass().getSimpleName() + " is not in workshop");
         }
     }

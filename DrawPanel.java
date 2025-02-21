@@ -1,6 +1,5 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
@@ -16,9 +15,9 @@ public class DrawPanel extends JPanel{
     BufferedImage scaniaImage;
 
     // To keep track of a single car's position
-    Point volvoPoint = new Point();
-    Point saabPoint = new Point();
-    Point scaniaPoint = new Point();
+    Point volvoPoint = new Point(0,0);
+    Point saabPoint = new Point(0,100);
+    Point scaniaPoint = new Point(0,200);
     ArrayList<Point> carPoints = new ArrayList<Point>() {{
         add(volvoPoint);
         add(saabPoint);
@@ -28,11 +27,9 @@ public class DrawPanel extends JPanel{
     BufferedImage volvoWorkshopImage;
     Point volvoWorkshopPoint = new Point(300,300);
 
-    void moveit(int x, int y){
-        for(Point p: carPoints) {
-            p.x = x;
-            p.y = y;
-        }
+    void moveit(int x, int y, int i){
+        carPoints.get(i).x = x;
+        carPoints.get(i).y = y;
     }
 
     // Initializes the panel and reads the images
@@ -58,6 +55,7 @@ public class DrawPanel extends JPanel{
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        //System.out.println(saabPoint.y);
         g.drawImage(volvoImage, volvoPoint.x, volvoPoint.y, null); // see javadoc for more info on the parameters
         g.drawImage(saabImage, saabPoint.x, saabPoint.y, null);
         g.drawImage(scaniaImage, scaniaPoint.x, scaniaPoint.y, null);
